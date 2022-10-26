@@ -2,9 +2,9 @@
   "name": "api-convert-svg2png",
   "version": "1.0.0",
   "description": "API for Convert SVG to PNG",
-  "main": "index.js",
+  "main": "index2.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index2.js"
   },
   "author": "Tuan Nguyen",
   "license": "ISC",

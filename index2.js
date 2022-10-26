@@ -5,12 +5,12 @@ const fs = require("fs");
 const {downloadImageAsFile} = require('./utils.js');
 
 
-exports.handler = async (event) => {
-    const url = event.url;
+const start = async () => {
+    const url = 'https://s3.ap-southeast-1.amazonaws.com/v2.oopprint.com/spiral_lyrics_v2.svg';
     const dir = os.tmpdir();
     const svg_file_name = 'test_upload_image_node_v5.svg';
     const svg_path = path.join(dir, svg_file_name);
-    await  downloadImageAsFile(url, svg_path);
+    await downloadImageAsFile(url, svg_path);
 
     const png_file_name = 'test_upload_image_node_v5.png';
     const png_path = path.join(dir, png_file_name);
@@ -21,13 +21,6 @@ exports.handler = async (event) => {
         }
     });
     const base64String = fs.readFileSync(png_path, {encoding: 'base64'});
-
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify({
-            'base64': base64String
-        }),
-    };
-    return response;
+    console.log(base64String)
 };
-
+start()
