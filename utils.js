@@ -1,4 +1,5 @@
 const axios = require('axios');
+const fs = require("fs");
 
 exports.downloadImageAsFile = async (url, svg_path) => {
     const res = await axios.get(url, {responseType: 'arraybuffer'});
