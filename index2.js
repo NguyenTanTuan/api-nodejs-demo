@@ -1,8 +1,8 @@
 const os = require('os')
 const path = require('path')
-const {exec} = require("child_process")
+// const {exec} = require("child_process")
 const fs = require("fs");
-const {downloadImageAsFile} = require('./utils.js');
+const {downloadImageAsFile, convertSvg2Png} = require('./utils.js');
 
 
 const start = async () => {
@@ -14,13 +14,17 @@ const start = async () => {
 
     const png_file_name = 'test_upload_image_node_v5.png';
     const png_path = path.join(dir, png_file_name);
+    await convertSvg2Png(svg_path, png_path);
 
-    await exec(`svgexport ${svg_path} ${png_path}`, (err, stderr, stdout) => {
-        if (err) {
-            console.log("error in conversion of svg");
-        }
-    });
     const base64String = fs.readFileSync(png_path, {encoding: 'base64'});
     console.log(base64String)
+    // await exec(`svgexport ${svg_path} ${png_path}`, (err, stderr, stdout) => {
+    //     if (err) {
+    //         console.log("error in conversion of svg");
+    //     } else {
+    //         x = fs.readFileSync(png_path, {encoding: 'base64'});
+    //     }
+    // });
+    // const base64String = fs.readFileSync(png_path, {encoding: 'base64'});
 };
 start()
